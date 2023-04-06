@@ -49,7 +49,7 @@ class Song:
     def compute_stft(self, keep_spectrogram=False, keep_data=False):
         if self.data is not None:
             self.logger.debug("Generating sftf for %s", self.name)
-            spectrogram = librosa.stft(self.data, self.config.getint("song", "window_size"), hop_length=self.config.getint("song", "hop_length"))
+            spectrogram = librosa.stft(self.data, win_length=self.config.getintwin_length("song", "window_size"), hop_length=self.config.getint("song", "hop_length"))
             self.amplitude = librosa.power_to_db(np.abs(spectrogram)**2)
             if keep_spectrogram is True:
                 self.spectrogram = spectrogram
